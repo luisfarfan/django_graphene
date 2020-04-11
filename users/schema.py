@@ -12,4 +12,5 @@ class UserQuery(graphene.ObjectType):
     users = graphene.List(UserType)
 
     def resolve_users(self, info):
+        info
         return get_user_model().objects.all()
