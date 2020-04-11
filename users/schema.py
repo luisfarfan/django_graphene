@@ -8,7 +8,8 @@ class UserType(DjangoObjectType):
         model = get_user_model()
 
 
-class CreateUserInput(graphene.InputObjectType):
-    username = graphene.String(required=True)
-    password = graphene.String(required=True)
-    email = graphene.String(required=True)
+class UserQuery(graphene.ObjectType):
+    users = graphene.List(UserType)
+
+    def resolve_users(self, info):
+        return get_user_model().objects.all()
